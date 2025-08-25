@@ -1,0 +1,28 @@
+resources:
+- name: src
+  type: git
+  icon: github
+  source:
+    uri: https://github.com/ajay-iyer-10/screener-pipeline.git
+    branch: main
+
+jobs:
+- name: my-job
+  plan:
+    - get: src
+    - task: run
+      config:
+        platform: linux 
+        image_resource:
+            type: registry-image
+        source: { repository: python, tag: "3.13" } 
+        run:
+            path: /bin/bash 
+            args:
+                - -c
+                - |
+                  cd my-repo
+                  pip install -r requirements.txt
+                  python main.py 
+
+
