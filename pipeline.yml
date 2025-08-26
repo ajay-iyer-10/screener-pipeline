@@ -10,14 +10,13 @@ jobs:
 - name: my-job
   plan:
     - get: src
+      trigger: true
     - task: run
       config:
         platform: linux 
         image_resource:
             type: registry-image
-        source:
-            repository: python
-            tag: "3.13-slim-bookworm" 
+            source: {repository: python, tag: 3.13}
         inputs:
         - name: src
         run:
@@ -26,6 +25,8 @@ jobs:
                 - -c
                 - |
                   cd src
+                  python3 -m venv venv
+                  source venv/bin/activate
                   pip install -r requirements.txt
                   python main.py 
 
