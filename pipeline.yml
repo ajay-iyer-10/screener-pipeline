@@ -15,13 +15,17 @@ jobs:
         platform: linux 
         image_resource:
             type: registry-image
-        source: { repository: python, tag: "3.13" } 
+        source:
+            repository: python
+            tag: "3.13-slim-bookworm" 
+        inputs:
+        - name: src
         run:
-            path: /bin/bash 
+            path: sh
             args:
                 - -c
                 - |
-                  cd my-repo
+                  cd src
                   pip install -r requirements.txt
                   python main.py 
 

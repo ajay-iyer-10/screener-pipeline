@@ -8,7 +8,7 @@ from datetime import datetime
 # DB_PASSWORD = 'DB_PASSWORD'
 # DB = 'DB_1'
 # engine = create_engine(
-#         f'postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@localhost:5432/{DB}')
+#         f'postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@172.23.0.2:5432/{DB}')
 code = 'RELIANCE.NS'
 comp_data = yf.Ticker(code)
 df = pd.DataFrame(comp_data.history(start = '2020-08-01', end = '2025-08-01'))
