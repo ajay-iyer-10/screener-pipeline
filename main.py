@@ -3,7 +3,6 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 from datetime import datetime
 
-
 DB_USER = 'concourse_user'
 DB_PASSWORD = 'concourse_pass'
 DB = 'concourse'
@@ -17,7 +16,6 @@ df['company'] = 'Reliance Industries'
 df.reset_index(inplace=True)
 print('Data fetched successfully from yfinance')
 connection = engine.connect()
-print(df)
 df['load_dttm'] = datetime.now()
 df.to_sql(f'con_raw_data', engine, if_exists='replace',index=False)
 connection.commit()

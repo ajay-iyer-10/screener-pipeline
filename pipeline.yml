@@ -28,6 +28,28 @@ jobs:
                   python3 -m venv venv
                   source venv/bin/activate
                   pip install -r requirements.txt
-                  python main.py 
+                  python main.py
+- name: my-job-2
+  plan:
+    - get: src
+      trigger: true
+    - task: run
+      config:
+        platform: linux 
+        image_resource:
+            type: registry-image
+            source: {repository: python, tag: 3.13}
+        inputs:
+        - name: src
+        run:
+            path: sh
+            args:
+                - -c
+                - |
+                  cd src
+                  python3 -m venv venv
+                  source venv/bin/activate
+                  pip install -r requirements.txt
+                  python validate.py 
 
 
